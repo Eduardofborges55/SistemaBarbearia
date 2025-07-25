@@ -114,7 +114,7 @@ namespace SistemaBarbearia
             {
                 using (var conexao = Conexao.ObterConexao())
                 {
-                    string sql = @"INSERT INTO Clientes
+                    string sql = @"INSERT INTO Cadastro
                     (Nome,Senha)
                     VALUES
                      (@Nome,@Senha)";
