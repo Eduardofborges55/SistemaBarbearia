@@ -40,11 +40,12 @@ namespace SistemaBarbearia.Forms
                 using (var conexao = Conexao.ObterConexao())
                 {
                     string sql = @"INSERT INTO medicamentos 
-                          (Horarios, Nome, Tipo, Preco) 
+                          (Id, Horarios, Nome, Tipo, Preco) 
                           VALUES 
                           (@horarios @nome, @tipo , @preco)";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conexao);
+                    cmd.Parameters.AddWithValue("@id", TextId.Text);
                     cmd.Parameters.AddWithValue("@horarios", txtHorarios.Text);
                     cmd.Parameters.AddWithValue("@Nome", txtNome.Text);
                     cmd.Parameters.AddWithValue("@tipo", txtTipo.Text);
@@ -55,6 +56,7 @@ namespace SistemaBarbearia.Forms
                     MessageBox.Show("Medicamento salvo com sucesso!");
 
                     // Limpar campos
+                    TextId.Clear();
                     txtHorarios.Clear();
                     txtNome.Clear();
                     txtTipo.Clear();

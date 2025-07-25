@@ -114,14 +114,14 @@ namespace SistemaBarbearia
             {
                 using (var conexao = Conexao.ObterConexao())
                 {
-                    string sql = @"INSERT INTO Cadastro
-                    (Nome,Senha)
+                    string sql = @"INSERT INTO Cadastros
+                    (email,senha)
                     VALUES
-                     (@Nome,@Senha)";
+                     (@email,@senha)";
 
                     MySqlCommand cmd = new MySqlCommand(sql, conexao);
-                    cmd.Parameters.AddWithValue("@Nome", Textemail.Text);
-                    cmd.Parameters.AddWithValue("@Senha", TextSenha.Text);
+                    cmd.Parameters.AddWithValue("@email", Textemail.Text);
+                    cmd.Parameters.AddWithValue("@senha", TextSenha.Text);
 
                     cmd.ExecuteNonQuery();
 

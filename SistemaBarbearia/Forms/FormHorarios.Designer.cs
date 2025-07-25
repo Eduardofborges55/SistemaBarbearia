@@ -1,4 +1,5 @@
 ﻿
+
 namespace SistemaBarbearia.Forms
 {
     partial class FormHorarios
@@ -42,6 +43,8 @@ namespace SistemaBarbearia.Forms
             txtTipo = new TextBox();
             preco = new Label();
             txtPreco = new TextBox();
+            id = new Label();
+            TextId = new TextBox();
             SuspendLayout();
             // 
             // monthCalendar1
@@ -52,7 +55,7 @@ namespace SistemaBarbearia.Forms
             // 
             // txtHorarios
             // 
-            txtHorarios.Location = new Point(538, 37);
+            txtHorarios.Location = new Point(538, 105);
             txtHorarios.Name = "txtHorarios";
             txtHorarios.Size = new Size(82, 31);
             txtHorarios.TabIndex = 2;
@@ -61,7 +64,7 @@ namespace SistemaBarbearia.Forms
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(538, 9);
+            label2.Location = new Point(536, 77);
             label2.Name = "label2";
             label2.Size = new Size(80, 25);
             label2.TabIndex = 3;
@@ -70,14 +73,14 @@ namespace SistemaBarbearia.Forms
             // 
             // txtNome
             // 
-            txtNome.Location = new Point(536, 99);
+            txtNome.Location = new Point(536, 167);
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(82, 31);
             txtNome.TabIndex = 4;
             // 
             // button1
             // 
-            button1.Location = new Point(536, 283);
+            button1.Location = new Point(536, 328);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
             button1.TabIndex = 5;
@@ -87,7 +90,7 @@ namespace SistemaBarbearia.Forms
             // 
             // Horário_disponivel
             // 
-            Horário_disponivel.Location = new Point(656, 283);
+            Horário_disponivel.Location = new Point(656, 328);
             Horário_disponivel.Name = "Horário_disponivel";
             Horário_disponivel.Size = new Size(132, 34);
             Horário_disponivel.TabIndex = 6;
@@ -114,7 +117,7 @@ namespace SistemaBarbearia.Forms
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(538, 71);
+            label4.Location = new Point(536, 139);
             label4.Name = "label4";
             label4.Size = new Size(61, 25);
             label4.TabIndex = 9;
@@ -124,7 +127,7 @@ namespace SistemaBarbearia.Forms
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(536, 133);
+            label5.Location = new Point(536, 201);
             label5.Name = "label5";
             label5.Size = new Size(47, 25);
             label5.TabIndex = 10;
@@ -132,7 +135,7 @@ namespace SistemaBarbearia.Forms
             // 
             // txtTipo
             // 
-            txtTipo.Location = new Point(538, 161);
+            txtTipo.Location = new Point(536, 229);
             txtTipo.Name = "txtTipo";
             txtTipo.Size = new Size(82, 31);
             txtTipo.TabIndex = 11;
@@ -140,7 +143,7 @@ namespace SistemaBarbearia.Forms
             // preco
             // 
             preco.AutoSize = true;
-            preco.Location = new Point(538, 195);
+            preco.Location = new Point(536, 263);
             preco.Name = "preco";
             preco.Size = new Size(56, 25);
             preco.TabIndex = 12;
@@ -148,16 +151,34 @@ namespace SistemaBarbearia.Forms
             // 
             // txtPreco
             // 
-            txtPreco.Location = new Point(536, 223);
+            txtPreco.Location = new Point(536, 291);
             txtPreco.Name = "txtPreco";
             txtPreco.Size = new Size(82, 31);
             txtPreco.TabIndex = 13;
+            // 
+            // id
+            // 
+            id.AutoSize = true;
+            id.Location = new Point(538, 9);
+            id.Name = "id";
+            id.Size = new Size(28, 25);
+            id.TabIndex = 14;
+            id.Text = "Id";
+            // 
+            // TextId
+            // 
+            TextId.Location = new Point(536, 43);
+            TextId.Name = "TextId";
+            TextId.Size = new Size(84, 31);
+            TextId.TabIndex = 15;
             // 
             // FormHorarios
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 455);
+            Controls.Add(TextId);
+            Controls.Add(id);
             Controls.Add(txtPreco);
             Controls.Add(preco);
             Controls.Add(txtTipo);
@@ -198,5 +219,7 @@ namespace SistemaBarbearia.Forms
         private TextBox txtTipo;
         private Label preco;
         private TextBox txtPreco;
+        private Label id;
+        private TextBox TextId;
     }
 }
