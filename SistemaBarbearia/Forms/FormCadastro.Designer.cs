@@ -1,4 +1,6 @@
-﻿using SistemaBarbearia.Forms;
+﻿using MySql.Data.MySqlClient;
+using SistemaBarbearia.Forms;
+using SistemaFarmacia.Database;
 
 namespace SistemaBarbearia
 {
@@ -32,16 +34,17 @@ namespace SistemaBarbearia
         {
             button1 = new Button();
             label1 = new Label();
-            textBox1 = new TextBox();
+            Textemail = new TextBox();
             label2 = new Label();
-            textBox2 = new TextBox();
+            TextSenha = new TextBox();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(335, 245);
+            button1.Location = new Point(268, 196);
+            button1.Margin = new Padding(2);
             button1.Name = "button1";
-            button1.Size = new Size(112, 34);
+            button1.Size = new Size(90, 27);
             button1.TabIndex = 0;
             button1.Text = "Cadastro";
             button1.UseVisualStyleBackColor = true;
@@ -50,45 +53,50 @@ namespace SistemaBarbearia
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(335, 118);
+            label1.Location = new Point(268, 94);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(54, 25);
+            label1.Size = new Size(46, 20);
             label1.TabIndex = 1;
             label1.Text = "email";
             // 
-            // textBox1
+            // Textemail
             // 
-            textBox1.Location = new Point(335, 146);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(368, 31);
-            textBox1.TabIndex = 2;
+            Textemail.Location = new Point(268, 117);
+            Textemail.Margin = new Padding(2);
+            Textemail.Name = "Textemail";
+            Textemail.Size = new Size(295, 27);
+            Textemail.TabIndex = 2;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(335, 180);
+            label2.Location = new Point(268, 144);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(58, 25);
+            label2.Size = new Size(47, 20);
             label2.TabIndex = 3;
             label2.Text = "senha";
             // 
-            // textBox2
+            // TextSenha
             // 
-            textBox2.Location = new Point(335, 208);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(150, 31);
-            textBox2.TabIndex = 4;
+            TextSenha.Location = new Point(268, 166);
+            TextSenha.Margin = new Padding(2);
+            TextSenha.Name = "TextSenha";
+            TextSenha.Size = new Size(121, 27);
+            TextSenha.TabIndex = 4;
             // 
             // FormCadastro
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(textBox2);
+            ClientSize = new Size(640, 360);
+            Controls.Add(TextSenha);
             Controls.Add(label2);
-            Controls.Add(textBox1);
+            Controls.Add(Textemail);
             Controls.Add(label1);
             Controls.Add(button1);
+            Margin = new Padding(2);
             Name = "FormCadastro";
             Text = "Form1";
             ResumeLayout(false);
@@ -97,16 +105,49 @@ namespace SistemaBarbearia
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FormHorarios formHorarios = new FormHorarios();
-            formHorarios.Show();
+            if(string.IsNullOrWhiteSpace(Textemail.Text) || string.IsNullOrWhiteSpace(TextSenha.Text))
+
+                {
+                MessageBox.Show("Preencha todos os campos!");
+            }
+                try
+            {
+                using (var conexao = Conexao.ObterConexao())
+                {
+                    string sql = @"INSERT INTO Cadastro
+                    (Nome,Senha)
+                    VALUES
+                     (@Nome,@Senha)";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conexao);
+                    cmd.Parameters.AddWithValue("@Nome", Textemail.Text);
+                    cmd.Parameters.AddWithValue("@Senha", TextSenha.Text);
+
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Cliente salvo com sucesso!!");
+
+
+                    Textemail.Clear();
+                    TextSenha.Clear();
+
+                    FormHorarios formHorarios = new FormHorarios();
+                    formHorarios.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falha no cadastro");
+            }
+            
         }
 
         #endregion
 
         private Button button1;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox Textemail;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox TextSenha;
     }
 }
