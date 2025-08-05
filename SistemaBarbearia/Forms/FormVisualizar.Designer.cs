@@ -36,29 +36,32 @@
             // statusStrip1
             // 
             statusStrip1.ImageScalingSize = new Size(24, 24);
-            statusStrip1.Location = new Point(0, 350);
+            statusStrip1.Location = new Point(0, 450);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(800, 22);
+            statusStrip1.Padding = new Padding(1, 0, 10, 0);
+            statusStrip1.Size = new Size(767, 22);
             statusStrip1.TabIndex = 0;
             statusStrip1.Text = "statusStrip1";
             // 
             // dataGridViewListadodia
             // 
             dataGridViewListadodia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewListadodia.Location = new Point(440, 1);
+            dataGridViewListadodia.Location = new Point(204, -1);
+            dataGridViewListadodia.Margin = new Padding(2, 2, 2, 2);
             dataGridViewListadodia.Name = "dataGridViewListadodia";
             dataGridViewListadodia.RowHeadersWidth = 62;
-            dataGridViewListadodia.Size = new Size(360, 371);
+            dataGridViewListadodia.Size = new Size(563, 416);
             dataGridViewListadodia.TabIndex = 1;
             dataGridViewListadodia.CellContentClick += dataGridView1_CellContentClick;
             // 
             // FormVisualizar
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 372);
+            ClientSize = new Size(767, 472);
             Controls.Add(dataGridViewListadodia);
             Controls.Add(statusStrip1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "FormVisualizar";
             Text = "Form1";
             Load += FormVisualizar_Load;

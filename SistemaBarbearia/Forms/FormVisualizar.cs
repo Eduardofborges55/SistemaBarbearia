@@ -21,29 +21,38 @@ namespace SistemaBarbearia.Forms
 
         private void FormVisualizar_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-        private void CarregarMedicamentos()
-        {
-            try
+            using (var conexao = Conexao.ObterConexao())
             {
-                using (var conexao = Conexao.ObterConexao())
+                try
                 {
-                    string sql = "SELECT Id, Horarios, nome, tipo, preco from Serviços";
+                    string sql = "SELECT * FROM Servicos";
                     MySqlDataAdapter da = new MySqlDataAdapter(sql, conexao);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     dataGridViewListadodia.DataSource = dt;
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao carregar dados: " + ex.Message);
+                }
             }
-            catch (Exception ex)
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (var conexao = Conexao.ObterConexao())
             {
-                MessageBox.Show("Erro ao carregar Serviços: " + ex.Message);
+                try
+                {
+                    string sql = "SELECT * FROM Servicos";
+                    MySqlDataAdapter da = new MySqlDataAdapter(sql, conexao);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dataGridViewListadodia.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao carregar dados: " + ex.Message);
+                }
             }
         }
     }

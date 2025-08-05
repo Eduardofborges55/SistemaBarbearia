@@ -135,7 +135,7 @@ namespace SistemaBarbearia
                     formHorarios.Show();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Falha no cadastro");
             }

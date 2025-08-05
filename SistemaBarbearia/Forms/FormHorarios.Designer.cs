@@ -1,5 +1,8 @@
 ﻿
 
+using MySql.Data.MySqlClient;
+using SistemaFarmacia.Database;
+
 namespace SistemaBarbearia.Forms
 {
     partial class FormHorarios
@@ -199,10 +202,48 @@ namespace SistemaBarbearia.Forms
             PerformLayout();
         }
 
+
         private void Horário_disponivel_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if(string.IsNullOrEmpty(txtHorarios.Text) || string.IsNullOrEmpty(txtNome.Text) || string.IsNullOrEmpty(txtTipo.Text) || string.IsNullOrEmpty(txtPreco.Text))
+            {
+                MessageBox.Show("Por favor, preencha todos os campos.");
+            }
+            try
+            {
+                using (var conexao = Conexao.ObterConexao())
+                { 
+                string sql = @"INSERT INTO Servicos
+                (tipo,nome,preco,Horarios,Id)
+                VALUES
+                (@tipo, @nome, @preco, @Horarios, @Id)";
+                
+                MySqlCommand cmd = new MySqlCommand(sql, conexao);
+                cmd.Parameters.AddWithValue("@tipo", txtTipo.Text);
+                cmd.Parameters.AddWithValue("@nome", txtNome.Text);
+                cmd.Parameters.AddWithValue("@preco", txtPreco.Text);
+                cmd.Parameters.AddWithValue("@Horarios", txtHorarios.Text);
+                cmd.Parameters.AddWithValue("@Id", TextId.Text);
+
+                cmd.ExecuteNonQuery();
+                    
+                MessageBox.Show("Horário salvo com sucesso!");
+                    
+                    txtTipo.Clear();
+                    txtNome.Clear();
+                    txtPreco.Clear();
+                    txtHorarios.Clear();
+                    TextId.Clear();
+
+                }
         }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao salvar horário: ");
+            }
+
+        }
+
 
         #endregion
 
